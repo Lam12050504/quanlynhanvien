@@ -1,0 +1,53 @@
+﻿@model quanlynv.Models.EmployeePicture
+
+@{
+    ViewData["Title"] = "EditPicture";
+}
+
+<h1>EditPicture</h1>
+
+<h4>Employee Picture</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditPicture" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EmpId" class="control-label"></label>
+                <input asp-for="EmpId" class="form-control" readonly />
+                <span asp-validation-for="EmpId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageInfo" class="control-label"></label>
+                <input asp-for="ImageInfo" class="form-control" />
+                <span asp-validation-for="ImageInfo" class="text-danger"></span>
+            </div>
+            @if (!string.IsNullOrEmpty(ViewBag.ImageUrl))
+            {
+                <div class="form-group">
+                    <img src="@ViewBag.ImageUrl" width="256" />
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <img src="~/img/account.png" width="256" />
+                </div>
+            }
+            <div class="form-group">
+                <div class="col-md-10">
+                    <p>Upload Employee Picture:</p>
+                    <input type="file" name="files" />
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
